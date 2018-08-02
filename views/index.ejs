@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf8">
+    <title>My ToDo List</title>
+    <!--框架的样式-->
+    <link rel="stylesheet" href="../public/stylesheets/common.css">
+    <!--事件的样式-->
+    <link rel="stylesheet" href="../public/stylesheets/thing.css">
+    <script src="../public/javascripts/script.js"></script>
+    <script src="../public/javascripts/ajax.js"></script>
+    <script src="../public/javascripts/ajaxReq.js"></script>
+</head>
+<body>
+<div id="title"><span><%=left%></span> THINGS TO DO</div>
+<div id="things-contain">
+    <div id="contain-head">
+        <div id="add-thing" onclick="addThing()">add</div>
+        <div id="all-todo" class="btn-selected" onclick="showAll()">all</div>
+        <div id="active" onclick="showActive()">active</div>
+        <div id="completed" onclick="showComplete()">completed</div>
+    </div>
+    <div id="things-list">
+        <% for(var i = 0; i < data.length;i++) {%>
+        <div class="single-thing">
+            <div class="thing-head">
+                <div class="check-contain">
+                    <input class="check-btn" autocomplete="off" type="checkbox"
+                            <% if(data[i].status !== "active"){ %>
+                           checked
+                            <% } %>
+                           onclick="checkInfo(this)">
+                </div>
+                <div onclick="showContent(this)"
+                        <% if(data[i].status === "active"){ %>
+                     class="td-title"
+                        <% }else{ %>
+                     class="td-title checked"
+                        <% }%> >
+                    <%=data[i].title%>
+                </div>
+                <div class="del-btn" onclick="delInfo(this)">×</div>
+                <div class="edit-btn" onclick="editing(this)">edit</div>
+                <div class="clear"></div>
+            </div>
+            <div class="td-content"><%=data[i].content%></div>
+        </div>
+        <% } %>
+    </div>
+    <div class="template">
+        <div class="thing-head">
+            <div class="check-contain">
+                <input class="check-btn" autocomplete="off" onclick="checkInfo(this)" type="checkbox">
+            </div>
+            <div onclick="showContent(this)" class="td-title">
+                1
+            </div>
+            <div class="del-btn" onclick="delInfo(this)">×</div>
+            <div class="edit-btn" onclick="editing(this)">edit</div>
+            <div class="clear"></div>
+        </div>
+        <div class="td-content">hhhhhh</div>
+    </div>
+    <div id="contain-bottom">
+        <div id="clear-completed"></div>
+    </div>
+</div>
+</body>
+</html>
