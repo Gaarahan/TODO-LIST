@@ -1,0 +1,24 @@
+{
+  "name": "to_do_express",
+  "version": "1.0.0",
+  "description": "- **AN EXPRESS PROJECT**",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gaarahan/TODO-LIST.git"
+  },
+  "author": "GaaraHan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gaarahan/TODO-LIST/issues"
+  },
+  "homepage": "https://github.com/Gaarahan/TODO-LIST#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {}
+}
