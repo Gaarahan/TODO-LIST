@@ -32,22 +32,46 @@ router.post('/add',function (req,res) {
 });
 
 router.post('/edit',function (req, res) {
-  let id = postData[req.body.index].things_id;
-  dbfunc.updateById(req.body.message,id,() => {
-    res.end();
+  dbfunc.getAll(function (result) {
+    postData = [];
+    for (let i = 0; i < result.length; i++)
+      postData.push(result[i]);
+
+    let id = postData[req.body.index].things_id;
+    dbfunc.updateById(req.body.message,id,() => {
+      res.end();
+    });
   });
 });
 
 router.post('/del',function (req,res) {
-  let id = postData[req.body.index].things_id;
-  dbfunc.delById(id,() => {
-    res.end();
+  dbfunc.getAll(function (result) {
+    postData = [];
+    for (let i = 0; i < result.length; i++)
+      postData.push(result[i]);
+
+    let id = postData[req.body.index].things_id;
+    dbfunc.delById(id, () => {
+      res.end();
+    });
   });
 });
 
 router.post('/check',function (req, res) {
-  postData[req.body.index].status = req.body.checked?"complete":"active";
-  res.end();
+  dbfunc.getAll(function (result) {
+    //获取数据
+    postData = [];
+    for (let i = 0; i < result.length; i++)
+      postData.push(result[i]);
+
+    //获取并修改当前数据
+    let curData = postData[req.body.index];
+    curData.status = req.body.checked?"complete":"active";
+    let id = curData.things_id;
+    dbfunc.updateById(curData,id,() => {
+      res.end();
+    });
+  });
 });
 
 
